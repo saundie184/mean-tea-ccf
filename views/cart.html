@@ -1,0 +1,53 @@
+  <h2>Shopping Cart</h2>
+  <div class='order-total'>
+    <h3 >Order total:
+      {{orderTotal() / 100 | currency}}</h3>
+  <a href='/#/checkout'><input class='btn btn-success' type='button' value='Proceed to checkout'/></a>
+  </div>
+<table class="table table-bordered">
+  <tr>
+    <th>
+      Product
+    </th>
+    <th>
+      Price
+    </th>
+    <th>
+      Quantity
+    </th>
+    <th>
+      Subtotal
+    </th>
+    <th></th>
+  </tr>
+  <tr ng-repeat='item in cart'>
+    {{item.data}}
+    <td>
+      <h3>{{item.data.name}}</h3>
+      <img src="{{item.data.imageUrl}}"/>
+      <p>
+        <strong>Ingredients:</strong>
+        {{item.data.ingredients}}
+      </p>
+    </td>
+    <td>
+      <p>
+        {{item.data.price / 100 | currency}}</p>
+    </td>
+    <td>
+      <div ng-hide='showEditInput'>
+        {{item.quantity}}
+      </div>
+      <div ng-show='showEditInput'>
+        <input ng-model='editInput' value=''/>
+      </div>
+    </td>
+    <td>{{item.data.price / 100 * item.quantity | currency}}</td>
+    <td>
+      <button ng-click='showEditInput = true; editInput = item.quantity; submitBtn = true' ng-hide='submitBtn' type='button' class='btn btn-warning'>Edit</button>
+      <button ng-click='updateQty(item, editInput); showEditInput = false; submitBtn = false' ng-show='submitBtn' type='button' class='btn btn-success'>Submit</button>
+
+      <button ng-click='removeItem(item)' type='button' class='btn btn-danger'>Remove</button>
+    </td>
+  </tr>
+</table>

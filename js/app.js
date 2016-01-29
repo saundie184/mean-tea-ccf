@@ -1,1 +1,1 @@
-var app = angular.module('templateApp', []);
+var app = angular.module('meanTeaApp', ['ngRoute']);

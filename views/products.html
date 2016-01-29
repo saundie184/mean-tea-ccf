@@ -1,0 +1,116 @@
+<h2>Our products</h2>
+<div class='row'>
+  <!-- <div class='container'>
+    <label for='categories'>
+      <h4>Search by category:</h4>
+    </label>
+    <select ng-model='sort' id='categories'>
+      <option value=''>
+        Dark
+      </option>
+      <option>
+        Cold
+      </option>
+      <option value=''>
+        Awesome
+      </option>
+      <option>
+        Hot
+      </option>
+      <option>
+        Summer
+      </option>
+      <option>
+        Lucid
+      </option>
+      <option>
+        Winter
+      </option>
+      <option>
+        Warm
+      </option>
+    </select>
+  </div> -->
+  <form class="navbar-form navbar-left" role="search">
+    <div class="form-group">
+      <label for='searchName'>
+        <h4>Search:</h4>
+      </label>
+      <input ng-model='searchTeas' type="text" class="form-control" id='searchName' placeholder="Search">
+    </div>
+  </form>
+</div>
+<table class="table table-bordered">
+  <tr>
+    <th>
+      Tea
+    </th>
+    <th>
+      Information
+    </th>
+    <th>
+      <a href='/#/shoppingcart' class='btn btn-danger'>
+        Checkout | Bag:(
+        {{bagSize()}}
+        )</a>
+    </th>
+  </tr>
+  <tr ng-repeat='d in data | filter: searchTeas | orderBy: sort'>
+    <td>
+      <img src="{{d.imageUrl}}"/>
+    </td>
+    <td>
+      <h3>{{d.name}}</h3>
+      <p>
+        <strong>Ingredients:</strong>
+        {{d.ingredients}}</p>
+      <p>
+        <strong>Caffiene Scale:</strong>
+        {{d.caffeineScale}}</p>
+      <p>
+        <strong>Price:</strong>
+        {{d.price / 100 | currency}}</p>
+      <p ng-if="d.inStock == true">
+        <strong>In Stock?</strong>
+        Yes</p>
+      <p ng-if="d.inStock == false">
+        <strong>In Stock?</strong>
+        No</p>
+      <p>
+        <strong>Rating:</strong>
+        {{d.rating}}</p>
+      <p>
+        <strong>Categories:</strong>
+      </p>
+      <ul>
+        <li ng-repeat='cat in d.categories'>
+          {{cat}}
+        </li>
+      </ul>
+    </td>
+    <td>
+      <label for="quantity">Quantity:</label>
+      <select ng-model="quantity" id="quantity">
+        <option value="1">
+          1
+        </option>
+        <option value="2">
+          2
+        </option>
+        <option value="3">
+          3
+        </option>
+        <option value="4">
+          4
+        </option>
+        <option value="5">
+          5
+        </option>
+        <option value="6">
+          6
+        </option>
+      </select>
+      <button ng-click='addToBag(d, quantity)' type='button' class='btn btn-warning'>Add to Bag</button>
+    </td>
+  </tr>
+</table>
