@@ -16,6 +16,6 @@ function mainController($scope, getTeaDataService, shoppingCartService) {
 
   $scope.bagSize = shoppingCartService.calculateBagSize;
 
-  $scope.success = 'Your order has been submitted!';
+  $scope.success = 'Your order has been submitted! Thank you!';
 
 }
